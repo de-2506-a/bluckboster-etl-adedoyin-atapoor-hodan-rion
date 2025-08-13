@@ -53,6 +53,8 @@ def extract_address_execution() -> pd.DataFrame:
 
     # Execute the query
     address_df = execute_extract_query(query, connection)
+
+    # address_df.fillna("", inplace=True)
     address_df.to_csv("data/raw/unclean-address.csv", index=False)
     connection.close()
 
