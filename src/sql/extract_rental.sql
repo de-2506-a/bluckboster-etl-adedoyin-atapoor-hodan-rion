@@ -4,6 +4,5 @@ SELECT
     inventory_id, 
     customer_id,
     return_date, 
-    staff_id, 
-    last_update
+    staff_id
 FROM main.rental;
