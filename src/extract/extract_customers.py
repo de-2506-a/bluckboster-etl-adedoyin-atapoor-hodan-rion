@@ -53,6 +53,7 @@ def extract_customers_execution() -> pd.DataFrame:
 
     # Execute the query
     customers_df = execute_extract_query(query, connection)
+    customers_df.to_csv("data/raw/unclean-customers.csv", index=False)
     connection.close()
 
     # Return the created DataFrame
