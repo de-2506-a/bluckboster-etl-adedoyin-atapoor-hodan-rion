@@ -53,7 +53,7 @@ def extract_payments_execution() -> pd.DataFrame:
 
     # Execute the query
     payments_df = execute_extract_query(query, connection)
-    payments_df.to_csv("data/raw/unclean-payments.csv", index=False)
+    payments_df.to_csv("data/processed/cleaned-payments.csv", index=False)
     connection.close()
 
     # Return the created DataFrame

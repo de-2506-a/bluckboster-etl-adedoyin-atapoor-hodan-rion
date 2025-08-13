@@ -53,7 +53,7 @@ def extract_city_execution() -> pd.DataFrame:
 
     # Execute the query
     city_df = execute_extract_query(query, connection)
-    city_df.to_csv("data/raw/unclean-city.csv", index=False)
+    city_df.to_csv("data/processed/cleaned-city.csv", index=False)
     connection.close()
 
     # Return the created DataFrame

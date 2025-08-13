@@ -8,7 +8,6 @@ def clean_customers(customers: pd.DataFrame) -> pd.DataFrame:
     # Save the dataframe as a CSV for logging purposes
     # Ensure the directory exists
     customers.to_csv("data/processed/cleaned-customers.csv", index=False)
-    customers.info()
     return customers
 
 
