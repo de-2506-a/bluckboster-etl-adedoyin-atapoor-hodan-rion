@@ -1,6 +1,7 @@
 import pandas as pd
 from src.extract.extract_films import extract_films
 from src.extract.extract_payments import extract_payments
+from src.extract.extract_customers import extract_customers
 from src.utils.logging_utils import setup_logger
 
 logger = setup_logger("extract_data", "extract_data.log")
@@ -12,10 +13,13 @@ def extract_data() -> tuple[pd.DataFrame, pd.DataFrame]:
 
         films = extract_films()
         payments = extract_payments()
+        customers = extract_customers()
 
         logger.info(
             f"Data extraction completed successfully - "
-            f"Films: {films.shape}, Payments: {payments.shape}"
+            f"Films: {films.shape}, "
+            f"Payments: {payments.shape}, "
+            f"Customers: {customers.shape}"
         )
 
         return (films, payments)
