@@ -53,6 +53,7 @@ def extract_country_execution() -> pd.DataFrame:
 
     # Execute the query
     country_df = execute_extract_query(query, connection)
+    country_df.to_csv("data/raw/unclean-country.csv", index=False)
     connection.close()
 
     # Return the created DataFrame
