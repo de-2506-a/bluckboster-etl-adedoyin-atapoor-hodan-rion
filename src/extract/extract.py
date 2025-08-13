@@ -37,7 +37,8 @@ def extract_data() -> tuple[pd.DataFrame, pd.DataFrame]:
             f"Country: {country.shape}"
         )
 
-        return (films, payments)
+        return (films, payments, customers, rentals, city, address, inventory,
+                country)
 
     except Exception as e:
         logger.error(f"Data extraction failed: {str(e)}")
