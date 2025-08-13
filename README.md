@@ -56,6 +56,7 @@ run_etl dev
 ```
 7. To run the streamlit app:
 ```bash
+cd streamlit
 streamlit run vis1.py
 ```
 
