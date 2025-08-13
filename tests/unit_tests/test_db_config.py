@@ -11,11 +11,6 @@ def test_load_db_config(mocker):
         'SOURCE_DB_PASSWORD': 'test_password',
         'SOURCE_DB_HOST': 'localhost',
         'SOURCE_DB_PORT': '5432',
-        'TARGET_DB_NAME': 'test_target_db',
-        'TARGET_DB_USER': 'test_user',
-        'TARGET_DB_PASSWORD': 'test_password',
-        'TARGET_DB_HOST': 'localhost',
-        'TARGET_DB_PORT': '5432'
     })
 
     config = load_db_config()
@@ -25,11 +20,6 @@ def test_load_db_config(mocker):
     assert config['source_database']['password'] == 'test_password'
     assert config['source_database']['host'] == 'localhost'
     assert config['source_database']['port'] == '5432'
-    assert config['target_database']['dbname'] == 'test_target_db'
-    assert config['target_database']['user'] == 'test_user'
-    assert config['target_database']['password'] == 'test_password'
-    assert config['target_database']['host'] == 'localhost'
-    assert config['target_database']['port'] == '5432'
 
 
 def test_load_db_config_missing_env_var_port_defaults(mocker):
@@ -40,11 +30,7 @@ def test_load_db_config_missing_env_var_port_defaults(mocker):
         'SOURCE_DB_PASSWORD': 'test_password',
         'SOURCE_DB_HOST': 'localhost',
         # 'SOURCE_DB_PORT': '5432',  # Missing
-        'TARGET_DB_NAME': 'test_target_db',
-        'TARGET_DB_USER': 'test_user',
-        'TARGET_DB_PASSWORD': 'test_password',
-        'TARGET_DB_HOST': 'localhost',
-        'TARGET_DB_PORT': '5432'
+
     })
 
     config = load_db_config()
@@ -54,11 +40,6 @@ def test_load_db_config_missing_env_var_port_defaults(mocker):
     assert config['source_database']['password'] == 'test_password'
     assert config['source_database']['host'] == 'localhost'
     assert config['source_database']['port'] == '5432'  # Default value
-    assert config['target_database']['dbname'] == 'test_target_db'
-    assert config['target_database']['user'] == 'test_user'
-    assert config['target_database']['password'] == 'test_password'
-    assert config['target_database']['host'] == 'localhost'
-    assert config['target_database']['port'] == '5432'
 
 
 # Mapping from environment variable names to configuration keys
@@ -82,11 +63,6 @@ def test_load_db_config_missing_env_var_errors(mocker, env_var):
         'SOURCE_DB_PASSWORD': 'test_password',
         'SOURCE_DB_HOST': 'localhost',
         'SOURCE_DB_PORT': '5432',
-        'TARGET_DB_NAME': 'test_target_db',
-        'TARGET_DB_USER': 'test_user',
-        'TARGET_DB_PASSWORD': 'test_password',
-        'TARGET_DB_HOST': 'localhost',
-        'TARGET_DB_PORT': '5432'
     }
     mock_env[env_var] = 'error'  # Set the parameterized env_var to 'error'
     mocker.patch.dict(os.environ, mock_env)
