@@ -11,50 +11,50 @@ from src.utils.logging_utils import setup_logger, log_extract_success
 # Setup the logger
 logger = setup_logger(__name__, "extract_data.log", level=logging.DEBUG)
 
-EXTRACT_FILMS_QUERY_FILE = os.path.join(
-    os.path.dirname(__file__), "../sql/extract_films.sql"
+EXTRACT_ACTORS_QUERY_FILE = os.path.join(
+    os.path.dirname(__file__), "../sql/extract_actors.sql"
 )
 
 EXPECTED_IMPORT_RATE = 0.001
 
-TYPE = "FILMS from pagila database"
+TYPE = "ACTORS from pagila database"
 
 
-def extract_films() -> pd.DataFrame:
+def extract_actors() -> pd.DataFrame:
     try:
         # Performance recording
         start_time = timeit.default_timer()
-        films = extract_films_execution()
-        extract_films_execution_time = (
+        actors = extract_actors_execution()
+        extract_actors_execution_time = (
             timeit.default_timer() - start_time
         )
         log_extract_success(
             logger,
             TYPE,
-            films.shape,
-            extract_films_execution_time,
+            actors.shape,
+            extract_actors_execution_time,
             EXPECTED_IMPORT_RATE,
         )
-        return films
+        return actors
     except Exception as e:
         logger.setLevel(logging.ERROR)
         logger.error(f"Failed to extract data: {e}")
         raise Exception(f"Failed to extract data: {e}")
 
 
-def extract_films_execution() -> pd.DataFrame:
+def extract_actors_execution() -> pd.DataFrame:
     # Import the SQL query
     connection_details = load_db_config()["source_database"]
     print(connection_details)
-    query = import_sql_query(EXTRACT_FILMS_QUERY_FILE)
+    query = import_sql_query(EXTRACT_ACTORS_QUERY_FILE)
 
     # Connect to the database
     connection = get_db_connection(connection_details)
 
     # Execute the query
-    films_df = execute_extract_query(query, connection)
+    actors_df = execute_extract_query(query, connection)
     connection.close()
-    print(films_df)
+    print(actors_df)
 
     # Return the created DataFrame
-    return films_df
+    return actors_df

@@ -6,7 +6,11 @@ from src.utils.logging_utils import setup_logger
 
 # Use LOG_BASE_PATH if set (for testing), otherwise use default
 log_base_path = os.getenv("LOG_BASE_PATH")
-logger = setup_logger("etl_pipeline", "etl_pipeline.log", base_path=log_base_path)
+logger = setup_logger(
+    "etl_pipeline",
+    "etl_pipeline.log",
+    base_path=log_base_path
+)
 
 
 def main():
@@ -18,10 +22,8 @@ def main():
         logger.info(f"Starting ETL pipeline in {env} environment")
 
         logger.info("Beginning data extraction phase")
-        extracted_data = extract_data()
+        extract_data()
         logger.info("Data extraction phase completed")
-        print(extracted_data)
-
         logger.info(
             f"ETL pipeline completed successfully in {env} environment"
         )
