@@ -31,6 +31,7 @@ agg_df = (
 
 # Step 4: Order results (descending by customer count)
 agg_df = agg_df.sort_values(by="customer_count", ascending=False)
+agg_df = agg_df.set_index("country")
 
 print(agg_df)
 
@@ -52,21 +53,13 @@ print(agg_df1)
 
 # streamlit
 st.title("BluckBoster Entertainment")
-st.title("Customer Count per Country")
-
-fig1 = px.bar(
-    agg_df.head(10),
-    x="customer_count",
-    y="country",
-    color="country"
-)
-fig1.update_layout(
-    showlegend=False
-)
-st.plotly_chart(fig1)
+st.header("Top Ten Country per Customer")
 
 
-st.title("Which film has generated the highest revenue?")
+st.bar_chart(agg_df.head(10).set_index("country"))
+
+
+st.header("Top Ten Films Generated Highest Revenue")
 
 
 fig = px.bar(
