@@ -2,7 +2,14 @@
 
 Welcome to our **BluckBoster**, an ETL pipeline which extracts uncleaned data and transforms and processed the data.
 
+## Data Extraction
+Connected to the Pagila Database using the credentials and saved the results of the SQL query in a csv file
 
+## Data Transformation
+Python and Pandas were used to clean and standardise the data. Got rid of any null or missing values which had no adverse effects on the dataset.
+
+## Data Visualisation
+Streamlit was used to plot two graphs and Pandas to merge the cleaned datasets.
 
 ## Data Analysis
 
