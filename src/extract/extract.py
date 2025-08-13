@@ -2,7 +2,7 @@ import pandas as pd
 from src.extract.extract_films import extract_films
 from src.extract.extract_payments import extract_payments
 from src.extract.extract_customers import extract_customers
-from src.extract.extract_rentals import extract_rentals
+from src.extract.extract_rental import extract_rental
 from src.extract.extract_city import extract_city
 from src.extract.extract_address import extract_address
 from src.extract.extract_inventory import extract_inventory
@@ -19,7 +19,7 @@ def extract_data() -> tuple[pd.DataFrame, pd.DataFrame]:
         films = extract_films()
         payments = extract_payments()
         customers = extract_customers()
-        rentals = extract_rentals()
+        rental = extract_rental()
         city = extract_city()
         address = extract_address()
         inventory = extract_inventory()
@@ -30,14 +30,14 @@ def extract_data() -> tuple[pd.DataFrame, pd.DataFrame]:
             f"Films: {films.shape}, "
             f"Payments: {payments.shape}, "
             f"Customers: {customers.shape}, "
-            f"Rentals: {rentals.shape}, "
+            f"Rentals: {rental.shape}, "
             f"City: {city.shape}, "
             f"Address: {address.shape}, "
             f"Inventory: {inventory.shape}, "
             f"Country: {country.shape}"
         )
 
-        return (films, payments, customers, rentals, city, address, inventory,
+        return (films, payments, customers, rental, city, address, inventory,
                 country)
 
     except Exception as e:

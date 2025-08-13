@@ -11,49 +11,50 @@ from src.utils.logging_utils import setup_logger, log_extract_success
 # Setup the logger
 logger = setup_logger(__name__, "extract_data.log", level=logging.DEBUG)
 
-EXTRACT_RENTALS_QUERY_FILE = os.path.join(
-    os.path.dirname(__file__), "../sql/extract_rentals.sql"
+EXTRACT_RENTAL_QUERY_FILE = os.path.join(
+    os.path.dirname(__file__), "../sql/extract_rental.sql"
 )
 
 EXPECTED_IMPORT_RATE = 0.001
 
-TYPE = "RENTALS from pagila database"
+TYPE = "RENTAL from pagila database"
 
 
-def extract_rentals() -> pd.DataFrame:
+def extract_rental() -> pd.DataFrame:
     try:
         # Performance recording
         start_time = timeit.default_timer()
-        rentals = extract_rentals_execution()
-        extract_rentals_execution_time = (
+        rental = extract_rental_execution()
+        extract_rental_execution_time = (
             timeit.default_timer() - start_time
         )
         log_extract_success(
             logger,
             TYPE,
-            rentals.shape,
-            extract_rentals_execution_time,
+            rental.shape,
+            extract_rental_execution_time,
             EXPECTED_IMPORT_RATE,
         )
-        return rentals
+        return rental
     except Exception as e:
         logger.setLevel(logging.ERROR)
         logger.error(f"Failed to extract data: {e}")
         raise Exception(f"Failed to extract data: {e}")
 
 
-def extract_rentals_execution() -> pd.DataFrame:
+def extract_rental_execution() -> pd.DataFrame:
     # Import the SQL query
     connection_details = load_db_config()["source_database"]
     print(connection_details)
-    query = import_sql_query(EXTRACT_RENTALS_QUERY_FILE)
+    query = import_sql_query(EXTRACT_RENTAL_QUERY_FILE)
 
     # Connect to the database
     connection = get_db_connection(connection_details)
 
     # Execute the query
-    rentals_df = execute_extract_query(query, connection)
+    rental_df = execute_extract_query(query, connection)
+    rental_df.to_csv("data/raw/unclean-rental.csv", index=False)
     connection.close()
 
     # Return the created DataFrame
-    return rentals_df
+    return rental_df
