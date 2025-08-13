@@ -14,7 +14,7 @@ coverage==7.10.3
 debugpy==1.8.16
 decorator==5.2.1
 diff_cover==9.6.0
--e git+https://github.com/de-2506-a/bluckboster-etl-adedoyin-atapoor-hodan-rion.git@6fbe8fbaec2ba6595887f0e64ed7c8b94cdffc49#egg=ETL_Project_Walkthough
+-e git+https://github.com/de-2506-a/bluckboster-etl-adedoyin-atapoor-hodan-rion.git@b01960cbda167b17d68f3d9f20037790c72b1b24#egg=ETL_Project_Walkthough
 executing==2.2.0
 flake8==7.3.0
 gitdb==4.0.12
