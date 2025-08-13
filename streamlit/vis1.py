@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 
 
 country_df = pd.read_csv("../data/processed/cleaned-country.csv")
@@ -49,14 +50,34 @@ agg_df1 = agg_df1.sort_values(by="total_revenue", ascending=False)
 print(agg_df1)
 
 
-#streamlit
+# streamlit
 st.title("BluckBoster Entertainment")
 st.title("Customer Count per Country")
 
-
-st.bar_chart(agg_df.head(10).set_index("country"))
+fig1 = px.bar(
+    agg_df.head(10),
+    x="customer_count",
+    y="country",
+    color="country"
+)
+fig1.update_layout(
+    showlegend=False
+)
+st.plotly_chart(fig1)
 
 
 st.title("Which film has generated the highest revenue?")
 
-st.bar_chart(agg_df1.head(10).set_index("title"))
+
+fig = px.bar(
+    agg_df1.head(10),
+    x="total_revenue",
+    y="title",
+    color="title"
+)
+
+fig.update_layout(
+    showlegend=False
+)
+
+st.plotly_chart(fig)
