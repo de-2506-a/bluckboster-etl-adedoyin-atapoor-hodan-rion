@@ -54,7 +54,6 @@ def extract_films_execution() -> pd.DataFrame:
     # Execute the query
     films_df = execute_extract_query(query, connection)
     connection.close()
-    print(films_df)
 
     # Return the created DataFrame
     return films_df

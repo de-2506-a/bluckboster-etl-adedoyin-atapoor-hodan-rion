@@ -54,7 +54,6 @@ def extract_rentals_execution() -> pd.DataFrame:
     # Execute the query
     rentals_df = execute_extract_query(query, connection)
     connection.close()
-    print(rentals_df)
 
     # Return the created DataFrame
     return rentals_df

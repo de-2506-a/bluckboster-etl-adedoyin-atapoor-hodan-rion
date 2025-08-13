@@ -54,7 +54,6 @@ def extract_city_execution() -> pd.DataFrame:
     # Execute the query
     city_df = execute_extract_query(query, connection)
     connection.close()
-    print(city_df)
 
     # Return the created DataFrame
     return city_df

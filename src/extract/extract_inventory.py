@@ -54,7 +54,6 @@ def extract_inventory_execution() -> pd.DataFrame:
     # Execute the query
     inventory_df = execute_extract_query(query, connection)
     connection.close()
-    print(inventory_df)
 
     # Return the created DataFrame
     return inventory_df

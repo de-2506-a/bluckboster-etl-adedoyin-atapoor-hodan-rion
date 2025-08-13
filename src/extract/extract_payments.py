@@ -54,7 +54,6 @@ def extract_payments_execution() -> pd.DataFrame:
     # Execute the query
     payments_df = execute_extract_query(query, connection)
     connection.close()
-    print(payments_df)
 
     # Return the created DataFrame
     return payments_df

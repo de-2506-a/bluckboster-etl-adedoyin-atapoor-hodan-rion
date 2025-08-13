@@ -54,7 +54,6 @@ def extract_address_execution() -> pd.DataFrame:
     # Execute the query
     address_df = execute_extract_query(query, connection)
     connection.close()
-    print(address_df)
 
     # Return the created DataFrame
     return address_df
