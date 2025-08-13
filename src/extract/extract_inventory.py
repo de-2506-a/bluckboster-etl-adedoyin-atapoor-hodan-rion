@@ -53,6 +53,7 @@ def extract_inventory_execution() -> pd.DataFrame:
 
     # Execute the query
     inventory_df = execute_extract_query(query, connection)
+    inventory_df.to_csv("data/raw/unclean-inventory.csv", index=False)
     connection.close()
 
     # Return the created DataFrame
