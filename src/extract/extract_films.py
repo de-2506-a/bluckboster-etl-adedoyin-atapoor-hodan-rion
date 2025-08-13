@@ -53,6 +53,7 @@ def extract_films_execution() -> pd.DataFrame:
 
     # Execute the query
     films_df = execute_extract_query(query, connection)
+    films_df.to_csv("data/raw/unclean-films.csv", index=False)
     connection.close()
 
     # Return the created DataFrame
